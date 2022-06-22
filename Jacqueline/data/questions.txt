@@ -1,0 +1,16 @@
+20
+3:B:Which is part of a bean flower?:1a.jpg:1b.jpg:1c.jpg:1d.jpg
+1:D:In which is the use of chemical pesticides prohibited?:crop rotation:mixed farming:monoculture:organic farming
+2:A:What is the potash content of the fertiliser?:q3.jpg:5%:10%:15%:50%
+  
+
+
+
+
+
+4
+1:B:Who designed the Eiffel Tower?:Minah:Mamat:Joyah
+2:C:Where is this building located?:klcc.jpg:Tokyo:Paris:Kuala Lumpur
+1:C:Who shot JF Kennedy?:Mamat:Minah:None of the above
+1:A:Who created IPhone?:Apple:Isee:Idonno
+
