@@ -56,8 +56,8 @@ public class Analysis implements ActionListener {
         p.add(txtMode);
         
         //Next
-        btnNext = new JButton("Next");
-        btnNext.setBounds(350,300,100,25);
+        btnNext = new JButton("Result Form");
+        btnNext.setBounds(350,300,125,25);
         btnNext.addActionListener(this);
         p.add(btnNext);
         
@@ -66,8 +66,8 @@ public class Analysis implements ActionListener {
         p.add(labResult);
         
         //Exit
-        btnExit = new JButton("Exit");
-        btnExit.setBounds(350,325,100,25);
+        btnExit = new JButton("Exit"); //Go to main menu?
+        btnExit.setBounds(250,300,100,25);
         btnExit.addActionListener(this);
         p.add(btnExit);
         
