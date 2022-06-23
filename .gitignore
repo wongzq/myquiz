@@ -1,2 +1,6 @@
+# generated
+bin
+
+# miscellaneous
 .DS_Store
 .vscode
