@@ -1,8 +1,37 @@
 20
+
 3:B:Which is part of a bean flower?:1a.jpg:1b.jpg:1c.jpg:1d.jpg
 1:D:In which is the use of chemical pesticides prohibited?:crop rotation:mixed farming:monoculture:organic farming
 2:A:What is the potash content of the fertiliser?:q3.jpg:5%:10%:15%:50%
-  
+1:B:A cereal crop must be dry before it is stored. Why should it be dry?: It is less likely to be eaten by insects.: It is less likely to rot.:It is lighter to carry.:It takes up less space. 
+2:C:The diagram shows the reproductive system of a female farm animal.What is structure X?:5.png:cervix :uterus :vagina :vulva
+1:B:Why must sick animals be isolated?:A to prevent making extra work :to prevent their disease spreading:to prevent them feeding freely:to prevent them from getting dirty 
+1:A:Grass is the main food for many ruminants. What does grass not supply to the animal?:fats:fibre:minerals:water 
+2:C:Some soil is shaken with water in a jar.:8.png:Which particles form layer X ?:A clay:gravel:humus:silt
+3:A:The diagrams show the structure of four flowers.Which flower is pollinated by wind ?:9a.png:9b.png:9c.png:9d.png
+2:C:The diagram shows the mouthparts of an insect pest.:10.png:Which crop condition may be controlled by killing these insects :fungal infection :nutrient deficiency:viral infection:weed competition
+3:D:The diagrams show four farm animals. Which animal feeds by browsing?:11a.png:11b.png:11c.png:11d.png
+2:A:The diagram shows a damaged leaf.:12.png:What is likely to have caused this damage?:a biting and chewing pest:a fungal disease:a nematode(eelworm):a piercing and sucking pest
+2:B:The graph shows a principle of agricultural economics.:13.png:Which economic principle is shown?:depreciation of value :diminishing returns :risk and uncertainty :supply and demand
+3:D:The diagram shows four hand tools that are often used on farms. Which tool needs regular oiling to prevent rusting?:14a.png:14b.png:14c.png:14d.png
+1:A:Which floor can be most easily kept clean?:concrete:earth:stones:wood 
+1:C:What describes extensive grazing? :Cattle are kept in paddocks.:Cattle are moved each day with electric fencing. :Cattle graze freely over a large area. :Cattle have green food given to them. 
+2:C:The diagram shows two water drinkers, X and Y, in a poultry deep litter house.:17.png:Why is X in a better position than Y ?:Chickens cannot perch on X.:It is easier for chickens to drink:Litter is less likely to enter the water :The drinker is easier to fill. 
+3:B:The diagram shows four different shapes of dam wall.Which dam wall will best withstand water pressure ?:18a.png:18b.png:18c.png:18d.png
+3:D:Which tool is used for clearing thick woody undergrowth (bush) ?:19a.png:19b.png:19c.png:19d.png
+1:A:In which chamber of a ruminant digestive system is gastric juice produced?:abomasum:omasum:reticulum:rumen
+
+
+
+
+
+
+
+
+ 
+ 
+
+
 
 
 
