@@ -8,3 +8,5 @@ bin
 /MyQuiz/build/
 /MyQuiz/dist/
 /nbproject/private/
+/build/
+/dist/

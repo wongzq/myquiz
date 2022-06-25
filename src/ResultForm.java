@@ -1,4 +1,3 @@
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -7,14 +6,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ResultForm extends Stage {
+
     private ApplicantAnswer[] answers;
 
-
     public ResultForm() {
-
-    }
-
-    public void start(Stage mainStage) {
 
         // ApplicantName
         Label labName = new Label("Applicant: ");
@@ -25,31 +20,43 @@ public class ResultForm extends Stage {
         txtName.setLayoutX(150);
         txtName.setLayoutY(50);
 
-
         // Result
         Label labResult = new Label("Result: ");
         labResult.setLayoutX(25); // without offset
         labResult.setLayoutY(100); // without offset
 
-        // Next
+        // Back
         Button btnBack = new Button();
         btnBack.setLayoutX(250);
         btnBack.setLayoutY(300);
         btnBack.setText("Analysis Form");
-        //btnNext.setOnAction(e -> 
-                
-        //);
+        btnBack.setOnAction(e -> {
+            AnalysisForm analysisform = new AnalysisForm();
+            analysisform.show();
+            this.hide();
+
+            analysisform.setOnHiding(e2 -> {
+                this.show();
+                analysisform.hide();
+            });
+        });
 
         // Exit
         Button btnExit = new Button();
         btnExit.setLayoutX(350);
         btnExit.setLayoutY(300);
         btnExit.setText("Exit");
-        //btnNext.setOnAction(e -> 
-                
-        //);
 
-        
+        //LoginForm loginForm = new LoginForm();
+        //btnExit.setOnAction(e -> {
+        //loginForm.show();
+        //this.hide();
+
+        //loginForm.setOnHiding(e2 -> {
+        //this.show();
+        //loginForm.hide();
+        //});
+        //});
         Pane p1 = new Pane();
         p1.getChildren().add(labName);
         p1.getChildren().add(txtName);
@@ -58,14 +65,9 @@ public class ResultForm extends Stage {
         p1.getChildren().add(btnExit);
 
         Scene myScene = new Scene(p1, 600, 400);
-        mainStage.setTitle("Result Form");
-        mainStage.setScene(myScene);
-        mainStage.show();  
-    }
-
-
-    public static void main(String args[]) {
-
+        this.setTitle("Result Form");
+        this.setScene(myScene);
+        this.show();
     }
 
     private void selectStudent() {

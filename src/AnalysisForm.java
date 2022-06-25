@@ -1,4 +1,3 @@
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -7,13 +6,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class AnalysisForm extends Stage {
+
     private ApplicantAnswer[] answers;
 
     public AnalysisForm() {
-
-    }
-
-    public void start(Stage mainStage) {
 
         // ApplicantName
         Label labName = new Label("Applicant Name: ");
@@ -50,25 +46,40 @@ public class AnalysisForm extends Stage {
         TextField txtMode = new TextField();
         txtMode.setLayoutX(150);
         txtMode.setLayoutY(150);
-        
+
         // Next
         Button btnNext = new Button();
         btnNext.setLayoutX(350);
         btnNext.setLayoutY(300);
         btnNext.setText("Result Form");
-        //btnNext.setOnAction(e -> 
-                
-        //);
+        btnNext.setOnAction(e -> {
+            ResultForm resultForm = new ResultForm();
+            resultForm.show();
+            this.hide();
+
+            resultForm.setOnHiding(e2 -> {
+                this.show();
+                resultForm.hide();
+            });
+        });
 
         // Exit
         Button btnExit = new Button();
         btnExit.setLayoutX(250);
         btnExit.setLayoutY(300);
         btnExit.setText("Exit");
-        //btnNext.setOnAction(e -> 
-                
-        //);
 
+        //LoginForm loginForm = new LoginForm();
+        //btnExit.setOnAction(e -> {
+        //loginForm.show();
+        //this.hide();
+
+        //loginForm.setOnHiding(e2 -> {
+        //this.show();
+        //loginForm.hide();
+        //});
+        //});
+        //);
         Pane p1 = new Pane();
         p1.getChildren().add(labName);
         p1.getChildren().add(labMax);
@@ -81,14 +92,13 @@ public class AnalysisForm extends Stage {
         p1.getChildren().add(txtMode);
 
         Scene myScene = new Scene(p1, 600, 400);
-        mainStage.setTitle("Analysis Form");
-        mainStage.setScene(myScene);
-        mainStage.show();  
+        this.setTitle("Analysis Form");
+        this.setScene(myScene);
+        this.show();
     }
 
-
     public static void main(String args[]) {
-        
+
     }
 
     public void getMax() {
