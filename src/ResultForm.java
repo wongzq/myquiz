@@ -1,75 +1,71 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-public class ResultForm implements ActionListener {
+public class ResultForm extends Stage {
     private ApplicantAnswer[] answers;
 
-    JFrame f;
-    JPanel p;
-    JButton btnExit, btnNext;
-    JTextField txtName;
-    JLabel labResult;
 
     public ResultForm() {
-        f = new JFrame();
-        p = new JPanel();
+
     }
 
-    public void init() {
-        f.setTitle("Result Form");
-        f.setSize(500, 500); // size is whatever size the other forms are
-        p.setLayout(null);
+    public void start(Stage mainStage) {
 
         // ApplicantName
-        JLabel labName = new JLabel("Applicant: ");
-        labName.setBounds(25, 50, 150, 25);
-        p.add(labName);
+        Label labName = new Label("Applicant: ");
+        labName.setLayoutX(25); // without offset
+        labName.setLayoutY(50); // without offset
 
-        txtName = new JTextField();
-        txtName.setBounds(150, 50, 150, 25);
-        p.add(txtName);
+        TextField txtName = new TextField();
+        txtName.setLayoutX(150);
+        txtName.setLayoutY(50);
+
 
         // Result
-        JLabel labResult = new JLabel("Result: ");
-        labResult.setBounds(25, 100, 150, 25);
-        p.add(labResult);
+        Label labResult = new Label("Result: ");
+        labResult.setLayoutX(25); // without offset
+        labResult.setLayoutY(100); // without offset
 
         // Next
-        btnNext = new JButton("Analysis Form");
-        btnNext.setBounds(25, 300, 125, 25);
-        btnNext.addActionListener(this);
-        p.add(btnNext);
-
-        labResult = new JLabel();
-        labResult.setBounds(25, 225, 150, 25);
-        p.add(labResult);
+        Button btnBack = new Button();
+        btnBack.setLayoutX(250);
+        btnBack.setLayoutY(300);
+        btnBack.setText("Analysis Form");
+        //btnNext.setOnAction(e -> 
+                
+        //);
 
         // Exit
-        btnExit = new JButton("Exit"); // Go to main menu?
-        btnExit.setBounds(150, 300, 100, 25);
-        btnExit.addActionListener(this);
-        p.add(btnExit);
+        Button btnExit = new Button();
+        btnExit.setLayoutX(350);
+        btnExit.setLayoutY(300);
+        btnExit.setText("Exit");
+        //btnNext.setOnAction(e -> 
+                
+        //);
 
-        f.add(p);
-        f.setVisible(true);
+        
+        Pane p1 = new Pane();
+        p1.getChildren().add(labName);
+        p1.getChildren().add(txtName);
+        p1.getChildren().add(labResult);
+        p1.getChildren().add(btnBack);
+        p1.getChildren().add(btnExit);
+
+        Scene myScene = new Scene(p1, 600, 400);
+        mainStage.setTitle("Result Form");
+        mainStage.setScene(myScene);
+        mainStage.show();  
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnExit)
-            System.exit(0);
-        else if (e.getSource() == btnNext) {
-            labResult.setText(txtName.getText());
-        }
-    }
 
     public static void main(String args[]) {
-        ResultForm res = new ResultForm();
-        res.init();
+
     }
 
     private void selectStudent() {

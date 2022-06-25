@@ -1,97 +1,94 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-public class AnalysisForm implements ActionListener {
+public class AnalysisForm extends Stage {
     private ApplicantAnswer[] answers;
 
-    JFrame f;
-    JPanel p;
-    JButton btnExit, btnNext;
-    JTextField txtName, txtMax, txtMin, txtMode;
-    JLabel labResult;
-
     public AnalysisForm() {
-        f = new JFrame();
-        p = new JPanel();
+
     }
 
-    public void init() {
-        f.setTitle("Analysis Form");
-        f.setSize(500, 500); // size is whatever size the other forms are
-        p.setLayout(null);
+    public void start(Stage mainStage) {
 
         // ApplicantName
-        JLabel labName = new JLabel("Applicant Name: ");
-        labName.setBounds(25, 50, 150, 25);
-        p.add(labName);
+        Label labName = new Label("Applicant Name: ");
+        labName.setLayoutX(25); // without offset
+        labName.setLayoutY(50); // without offset
 
-        txtName = new JTextField();
-        txtName.setBounds(150, 50, 150, 25);
-        p.add(txtName);
+        TextField txtName = new TextField();
+        txtName.setLayoutX(150);
+        txtName.setLayoutY(150);
 
         // Max
-        JLabel labMax = new JLabel("Max: ");
-        labMax.setBounds(25, 100, 150, 25);
-        p.add(labMax);
+        Label labMax = new Label("Max: ");
+        labMax.setLayoutX(25); // without offset
+        labMax.setLayoutY(100); // without offset
 
-        txtMax = new JTextField();
-        txtMax.setBounds(150, 100, 150, 25);
-        p.add(txtMax);
+        TextField txtMax = new TextField();
+        txtMax.setLayoutX(150);
+        txtMax.setLayoutY(150);
 
         // Min
-        JLabel labMin = new JLabel("Min: ");
-        labMin.setBounds(25, 150, 150, 25);
-        p.add(labMin);
+        Label labMin = new Label("Min: ");
+        labMin.setLayoutX(25); // without offset
+        labMin.setLayoutY(150); // without offset
 
-        txtMin = new JTextField();
-        txtMin.setBounds(150, 150, 150, 25);
-        p.add(txtMin);
+        TextField txtMin = new TextField();
+        txtMin.setLayoutX(150);
+        txtMin.setLayoutY(150);
 
         // Mode
-        JLabel labMode = new JLabel("Mode: ");
-        labMode.setBounds(25, 200, 150, 25);
-        p.add(labMode);
+        Label labMode = new Label("Mode: ");
+        labMode.setLayoutX(25); // without offset
+        labMode.setLayoutY(200); // without offset
 
-        txtMode = new JTextField();
-        txtMode.setBounds(150, 200, 150, 25);
-        p.add(txtMode);
-
+        TextField txtMode = new TextField();
+        txtMode.setLayoutX(150);
+        txtMode.setLayoutY(150);
+        
         // Next
-        btnNext = new JButton("Result Form");
-        btnNext.setBounds(350, 300, 125, 25);
-        btnNext.addActionListener(this);
-        p.add(btnNext);
-
-        labResult = new JLabel();
-        labResult.setBounds(25, 225, 150, 25);
-        p.add(labResult);
+        Button btnNext = new Button();
+        btnNext.setLayoutX(350);
+        btnNext.setLayoutY(300);
+        btnNext.setText("Result Form");
+        //btnNext.setOnAction(e -> 
+                
+        //);
 
         // Exit
-        btnExit = new JButton("Exit"); // Go to main menu?
-        btnExit.setBounds(250, 300, 100, 25);
-        btnExit.addActionListener(this);
-        p.add(btnExit);
+        Button btnExit = new Button();
+        btnExit.setLayoutX(250);
+        btnExit.setLayoutY(300);
+        btnExit.setText("Exit");
+        //btnNext.setOnAction(e -> 
+                
+        //);
 
-        f.add(p);
-        f.setVisible(true);
+        Pane p1 = new Pane();
+        p1.getChildren().add(labName);
+        p1.getChildren().add(labMax);
+        p1.getChildren().add(labMin);
+        p1.getChildren().add(btnNext);
+        p1.getChildren().add(btnExit);
+        p1.getChildren().add(txtName);
+        p1.getChildren().add(txtMax);
+        p1.getChildren().add(txtMin);
+        p1.getChildren().add(txtMode);
+
+        Scene myScene = new Scene(p1, 600, 400);
+        mainStage.setTitle("Analysis Form");
+        mainStage.setScene(myScene);
+        mainStage.show();  
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnExit)
-            System.exit(0);
-        else if (e.getSource() == btnNext) {
-            labResult.setText(txtName.getText());
-        }
-    }
 
     public static void main(String args[]) {
-        AnalysisForm anl = new AnalysisForm();
-        anl.init();
+        
     }
 
     public void getMax() {
