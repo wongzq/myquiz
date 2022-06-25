@@ -40,29 +40,12 @@ public class ResultForm extends Stage {
                 analysisform.hide();
             });
         });
-
-        // Exit
-        Button btnExit = new Button();
-        btnExit.setLayoutX(350);
-        btnExit.setLayoutY(300);
-        btnExit.setText("Exit");
-
-        //LoginForm loginForm = new LoginForm();
-        //btnExit.setOnAction(e -> {
-        //loginForm.show();
-        //this.hide();
-
-        //loginForm.setOnHiding(e2 -> {
-        //this.show();
-        //loginForm.hide();
-        //});
-        //});
+        
         Pane p1 = new Pane();
         p1.getChildren().add(labName);
         p1.getChildren().add(txtName);
         p1.getChildren().add(labResult);
         p1.getChildren().add(btnBack);
-        p1.getChildren().add(btnExit);
 
         Scene myScene = new Scene(p1, 600, 400);
         this.setTitle("Result Form");

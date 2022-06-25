@@ -63,29 +63,12 @@ public class AnalysisForm extends Stage {
             });
         });
 
-        // Exit
-        Button btnExit = new Button();
-        btnExit.setLayoutX(250);
-        btnExit.setLayoutY(300);
-        btnExit.setText("Exit");
 
-        //LoginForm loginForm = new LoginForm();
-        //btnExit.setOnAction(e -> {
-        //loginForm.show();
-        //this.hide();
-
-        //loginForm.setOnHiding(e2 -> {
-        //this.show();
-        //loginForm.hide();
-        //});
-        //});
-        //);
         Pane p1 = new Pane();
         p1.getChildren().add(labName);
         p1.getChildren().add(labMax);
         p1.getChildren().add(labMin);
         p1.getChildren().add(btnNext);
-        p1.getChildren().add(btnExit);
         p1.getChildren().add(txtName);
         p1.getChildren().add(txtMax);
         p1.getChildren().add(txtMin);
