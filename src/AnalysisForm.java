@@ -18,16 +18,15 @@ public class AnalysisForm extends Stage {
 
         TextField txtName = new TextField();
         txtName.setLayoutX(150);
-        txtName.setLayoutY(150);
+        txtName.setLayoutY(50);
 
         // Max
         Label labMax = new Label("Max: ");
         labMax.setLayoutX(25); // without offset
         labMax.setLayoutY(100); // without offset
-
         TextField txtMax = new TextField();
         txtMax.setLayoutX(150);
-        txtMax.setLayoutY(150);
+        txtMax.setLayoutY(100);
 
         // Min
         Label labMin = new Label("Min: ");
@@ -45,11 +44,11 @@ public class AnalysisForm extends Stage {
 
         TextField txtMode = new TextField();
         txtMode.setLayoutX(150);
-        txtMode.setLayoutY(150);
+        txtMode.setLayoutY(200);
 
         // Next
         Button btnNext = new Button();
-        btnNext.setLayoutX(350);
+        btnNext.setLayoutX(50);
         btnNext.setLayoutY(300);
         btnNext.setText("Result Form");
         btnNext.setOnAction(e -> {
@@ -68,6 +67,7 @@ public class AnalysisForm extends Stage {
         p1.getChildren().add(labName);
         p1.getChildren().add(labMax);
         p1.getChildren().add(labMin);
+        p1.getChildren().add(labMode);
         p1.getChildren().add(btnNext);
         p1.getChildren().add(txtName);
         p1.getChildren().add(txtMax);

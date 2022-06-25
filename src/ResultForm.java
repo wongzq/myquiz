@@ -24,13 +24,38 @@ public class ResultForm extends Stage {
         Label labResult = new Label("Result: ");
         labResult.setLayoutX(25); // without offset
         labResult.setLayoutY(100); // without offset
+        
+        TextField txtResult = new TextField();
+        txtResult.setLayoutX(150);
+        txtResult.setLayoutY(100);
+        
+        //Pass
+        Button btnPass = new Button();
+        btnPass.setLayoutX(450);
+        btnPass.setLayoutY(25);
+        btnPass.setText("Pass");
+        //Fail
+        Button btnFail = new Button();
+        btnFail.setLayoutX(500);
+        btnFail.setLayoutY(25);
+        btnFail.setText("Fail");
+        
+        //Answer
+        Label labAnswer = new Label("Answers: ");
+        labAnswer.setLayoutX(25); // without offset
+        labAnswer.setLayoutY(200); // without offset
+        
+        //AllAnswer
+        Label labAllAnswer = new Label("EXAMPLE ANSWERS!!!!");
+        labAllAnswer.setLayoutX(100); // without offset
+        labAllAnswer.setLayoutY(200); // without offset
 
-        // Back
-        Button btnBack = new Button();
-        btnBack.setLayoutX(250);
-        btnBack.setLayoutY(300);
-        btnBack.setText("Analysis Form");
-        btnBack.setOnAction(e -> {
+        //Next
+        Button btnNext = new Button();
+        btnNext.setLayoutX(50);
+        btnNext.setLayoutY(300);
+        btnNext.setText("Analysis Form");
+        btnNext.setOnAction(e -> {
             AnalysisForm analysisform = new AnalysisForm();
             analysisform.show();
             this.hide();
@@ -45,7 +70,12 @@ public class ResultForm extends Stage {
         p1.getChildren().add(labName);
         p1.getChildren().add(txtName);
         p1.getChildren().add(labResult);
-        p1.getChildren().add(btnBack);
+        p1.getChildren().add(txtResult);
+        p1.getChildren().add(btnPass);
+        p1.getChildren().add(btnFail);
+        p1.getChildren().add(labAnswer);
+        p1.getChildren().add(labAllAnswer);
+        p1.getChildren().add(btnNext);
 
         Scene myScene = new Scene(p1, 600, 400);
         this.setTitle("Result Form");
