@@ -9,6 +9,9 @@ public class AnalysisForm extends Stage {
 
     private ApplicantAnswer[] answers;
 
+    private NavigateToForm toMyQuiz;
+    private NavigateToForm toResultForm;
+    
     public AnalysisForm() {
 
         // ApplicantName
@@ -46,29 +49,31 @@ public class AnalysisForm extends Stage {
         txtMode.setLayoutX(150);
         txtMode.setLayoutY(200);
 
-        // Next
-        Button btnNext = new Button();
-        btnNext.setLayoutX(50);
-        btnNext.setLayoutY(300);
-        btnNext.setText("Result Form");
-        btnNext.setOnAction(e -> {
-            ResultForm resultForm = new ResultForm();
-            resultForm.show();
-            this.hide();
-
-            resultForm.setOnHiding(e2 -> {
-                this.show();
-                resultForm.hide();
-            });
+        // Back
+        Button btnBack = new Button();
+        btnBack.setLayoutX(50);
+        btnBack.setLayoutY(300);
+        btnBack.setText("Result Form");
+        btnBack.setOnAction(e -> {
+            toResultForm.navigate();
         });
-
+        
+        // MyQuiz
+        Button btnExit = new Button();
+        btnExit.setLayoutX(150);
+        btnExit.setLayoutY(300);
+        btnExit.setText("Back to Login Page");
+        btnExit.setOnAction(e -> {
+            toMyQuiz.navigate();
+        });
 
         Pane p1 = new Pane();
         p1.getChildren().add(labName);
         p1.getChildren().add(labMax);
         p1.getChildren().add(labMin);
         p1.getChildren().add(labMode);
-        p1.getChildren().add(btnNext);
+        p1.getChildren().add(btnBack);
+        p1.getChildren().add(btnExit);
         p1.getChildren().add(txtName);
         p1.getChildren().add(txtMax);
         p1.getChildren().add(txtMin);
@@ -77,11 +82,14 @@ public class AnalysisForm extends Stage {
         Scene myScene = new Scene(p1, 600, 400);
         this.setTitle("Analysis Form");
         this.setScene(myScene);
-        this.show();
     }
 
-    public static void main(String args[]) {
-
+    public void setToMyQuiz(NavigateToForm toMyQuiz) {
+        this.toMyQuiz = toMyQuiz;
+    }
+    
+    public void setToResultForm(NavigateToForm toResultForm) {
+        this.toResultForm = toResultForm;
     }
 
     public void getMax() {
