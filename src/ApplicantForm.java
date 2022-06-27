@@ -11,11 +11,11 @@ public class ApplicantForm {
     private TextField txtName, txtClass, txtIDNo, txtCourse, txtNationality;
     private Button btnExamForm;
     private Pane p1;
-    private Scene mainScene;
+    private Scene ApplicantScene;
 
-    public ApplicantForm() {
+   // public ApplicantForm() {
 
-    }
+    //}
 
     public void start(Stage mainStage) {
         mainStage.setTitle("APPLICANT FORM");
@@ -80,8 +80,8 @@ public class ApplicantForm {
         p1.getChildren().add(labResultLabel);
         p1.getChildren().add(labResult);
         p1.getChildren().add(btnExamForm);
-        mainScene = new Scene(p1, 900, 1050);
-        mainStage.setScene(mainScene);
+        ApplicantScene = new Scene(p1, 900, 1050);
+        mainStage.setScene(ApplicantScene);
         mainStage.show();
     }
 
@@ -89,8 +89,8 @@ public class ApplicantForm {
         Application.launch(args);
     }
 
-    private void saveDetails() {
+    //private void saveDetails() {
 
-    }
+   // }
 
 }

@@ -7,8 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MyQuiz extends Application {
-
-    @Override
+   @Override
     public void start(Stage mainStage) {
 
         Label labResult = new Label();
