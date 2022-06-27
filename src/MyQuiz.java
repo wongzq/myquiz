@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class MyQuiz extends Application {
 
+    @Override
     public void start(Stage mainStage) {
 
         Label labResult = new Label();
@@ -29,9 +30,16 @@ public class MyQuiz extends Application {
         btnOK2.setLayoutX(250);
         btnOK2.setLayoutY(190);
         btnOK2.setText("Teacher");
-        btnOK2.setOnAction(e
-                -> labResult2.setText("Open Teacher Window")
-        );
+        btnOK2.setOnAction(e -> {
+            ResultForm resultForm = new ResultForm();
+            resultForm.show();
+            mainStage.hide();
+
+            resultForm.setOnHiding(e2 -> {
+                mainStage.show();
+                resultForm.hide();
+            });
+        });
 
         Pane p1 = new Pane();
         p1.getChildren().add(labResult);
@@ -47,6 +55,5 @@ public class MyQuiz extends Application {
 
     public static void main(String args[]) {
         Application.launch(args);
-
     }
 }
