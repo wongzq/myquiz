@@ -1,11 +1,10 @@
 20
-
 3:B:Which is part of a bean flower?:1a.jpg:1b.jpg:1c.jpg:1d.jpg
 1:D:In which is the use of chemical pesticides prohibited?:crop rotation:mixed farming:monoculture:organic farming
 2:A:What is the potash content of the fertiliser?:q3.jpg:5%:10%:15%:50%
-1:B:A cereal crop must be dry before it is stored. Why should it be dry?: It is less likely to be eaten by insects.: It is less likely to rot.:It is lighter to carry.:It takes up less space. 
-2:C:The diagram shows the reproductive system of a female farm animal.What is structure X?:5.png:cervix :uterus :vagina :vulva
-1:B:Why must sick animals be isolated?:A to prevent making extra work :to prevent their disease spreading:to prevent them feeding freely:to prevent them from getting dirty 
+1:B:A cereal crop must be dry before it is stored. Why should it be dry?: It is less likely to be eaten by insects.:It is less likely to rot.:It is lighter to carry.:It takes up less space. 
+2:C:The diagram shows the reproductive system of a female farm animal.What is structure X?:5.png:cervix:uterus:vagina:vulva
+1:B:Why must sick animals be isolated?:A to prevent making extra work:to prevent their disease spreading:to prevent them feeding freely:to prevent them from getting dirty 
 1:A:Grass is the main food for many ruminants. What does grass not supply to the animal?:fats:fibre:minerals:water 
 2:C:Some soil is shaken with water in a jar.:8.png:Which particles form layer X ?:A clay:gravel:humus:silt
 3:A:The diagrams show the structure of four flowers.Which flower is pollinated by wind ?:9a.png:9b.png:9c.png:9d.png
