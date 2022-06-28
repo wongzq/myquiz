@@ -24,21 +24,38 @@ public class MyQuiz extends Application {
                 stage.show();
                 resultForm.hide();
                 analysisForm.hide();
-//                applicantForm.hide();
-//                examForm.hide();
+                loginForm.hide();
+                applicantForm.hide();
+                examForm.hide();
             };
         };
+        loginForm.setToMyQuiz(toMyQuiz);
         resultForm.setToMyQuiz(toMyQuiz);
         analysisForm.setToMyQuiz(toMyQuiz);
-//        loginForm.setToMyQuiz(toMyQuiz);
-//        applicantForm.setToMyQuiz(toMyQuiz);
-//        examForm.setToMyQuiz(toMyQuiz);
+        applicantForm.setToMyQuiz(toMyQuiz);
+        examForm.setToMyQuiz(toMyQuiz);
         
         //leave this for reference (only works when interface has one method)
 //        resultForm.setToMyQuiz(() -> {
 //            stage.show();
 //            resultForm.hide();
 //        });
+        NavigateToForm toLoginForm = new NavigateToForm() {
+        	public void navigate() {
+        		applicantForm.hide();
+        		loginForm.show();
+        	}
+        };
+        applicantForm.setToLoginForm(toLoginForm);
+        
+        NavigateToForm toApplicantForm = new NavigateToForm() {
+        	public void navigate() {
+        		loginForm.hide();
+        		applicantForm.show();
+        	};
+        };
+        
+        loginForm.setToApplicantForm(toApplicantForm);
 
         NavigateToForm toAnalysisForm = new NavigateToForm() {
             public void navigate() {
@@ -55,7 +72,16 @@ public class MyQuiz extends Application {
             };
         };
         analysisForm.setToResultForm(toResultForm);
+        
+        NavigateToForm toExamForm = new NavigateToForm() {
+    		public void navigate() {
+    			applicantForm.hide();
+    			examForm.show();
+    		}
+    	};
+    	applicantForm.setToExamForm(toExamForm);
     }
+
 
     
     @Override
@@ -96,7 +122,7 @@ public class MyQuiz extends Application {
 
         //Title
         Scene myScene = new Scene(p1, 600, 400);
-        mainStage.setTitle("Login Page");
+        mainStage.setTitle("MyQuiz");
         mainStage.setScene(myScene);
         mainStage.show();
     }

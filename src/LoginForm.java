@@ -21,6 +21,7 @@ public class LoginForm extends Stage {
     private Button btnLogin;
     private Button btnMyQuiz;
 
+
     private NavigateToForm toMyQuiz;
     private NavigateToForm toApplicantForm;
 
@@ -43,8 +44,23 @@ public class LoginForm extends Stage {
 //        cmbUsername = new ComboBox<Applicant>(FXCollections.observeableArrayList(applicants));
 //        cmbUsername.setPromptText(value: "Select your name");
         txtPassword = new TextField();
-        btnLogin = new Button();
+        
         btnMyQuiz = new Button();
+        btnMyQuiz.setLayoutX(400);
+        btnMyQuiz.setLayoutY(320);
+        btnMyQuiz.setText("Go back");
+        btnMyQuiz.setOnAction(e -> {
+        	toMyQuiz.navigate();
+        });
+        
+        btnLogin = new Button();
+        btnLogin.setText("Login");
+        btnLogin.setLayoutX(500);
+        btnLogin.setLayoutY(320);
+        btnLogin.setOnAction(e -> {
+        	toApplicantForm.navigate();
+        });
+        
 
         //username
         lblUsername.setLayoutX(180);
@@ -59,6 +75,10 @@ public class LoginForm extends Stage {
         p1.getChildren().add(lblPassword);
         p1.getChildren().add(btnLogin);
         p1.getChildren().add(btnMyQuiz);
+        
+        Scene myScene = new Scene(p1, 600, 400);
+        this.setTitle("Login Form");
+        this.setScene(myScene);
         
     }
     
@@ -81,11 +101,11 @@ public class LoginForm extends Stage {
 //        return false;
 //    }
 //
-//    public void setToMyQuiz(NavigateToForm toMyQuiz){
-//        this.toMyQuiz = toMyQuiz;
-//    }
-//
-//    public void setToApplicantForm(NavigateToForm to ApplicantForm) {
-//        this.toApplicantForm = toApplicantForm;
-//    }
+    public void setToMyQuiz (NavigateToForm toMyQuiz) {
+    	this.toMyQuiz = toMyQuiz;
+    }
+    
+    public void setToApplicantForm (NavigateToForm toApplicantForm) {
+    	this.toApplicantForm = toApplicantForm;
+    }
 }
