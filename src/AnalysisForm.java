@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class AnalysisForm extends Stage {
 
-    private char correctAnswers[] = { 'A', 'B', 'B', 'D', 'C', 'A', 'C' };
+    private char correctAnswers[] = { 'A', 'A', 'B', 'B', 'D', 'D', 'C', 'C', 'B', 'B' };
     private LinkedList<ApplicantAnswer> applicantAnswers = new LinkedList<ApplicantAnswer>();
 
     private NavigateToForm toMyQuiz;
@@ -17,7 +17,7 @@ public class AnalysisForm extends Stage {
 
     public AnalysisForm() {
         applicantAnswers.add(new ApplicantAnswer(
-                new char[] { 'A', 'B', 'B', 'D', 'C', 'A', 'C' },
+                new char[] { 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'A', 'A' },
                 new ApplicantDetails("",
                         "",
                         1,
@@ -27,25 +27,15 @@ public class AnalysisForm extends Stage {
                         "",
                         "")));
         applicantAnswers.add(new ApplicantAnswer(
-                new char[] { 'A', 'C', 'B', 'A', 'C', 'A', 'C' },
-                new ApplicantDetails("name",
-                        "password",
-                        12,
-                        "Male",
-                        "Malaysian",
-                        "Some class",
-                        "TAYLOR 1234",
-                        "Computer Science")));
-        applicantAnswers.add(new ApplicantAnswer(
-                new char[] { 'A', 'B', 'B', 'D', 'C', 'A', 'C' },
-                new ApplicantDetails("name",
-                        "password",
-                        12,
-                        "Male",
-                        "Malaysian",
-                        "Some class",
-                        "TAYLOR 1234",
-                        "Computer Science")));
+                new char[] { 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'B' },
+                new ApplicantDetails("",
+                        "",
+                        1,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "")));
 
         // ApplicantName
         Label labName = new Label("Applicant Name: ");
