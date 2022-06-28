@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -7,12 +9,43 @@ import javafx.stage.Stage;
 
 public class AnalysisForm extends Stage {
 
-    private ApplicantAnswer[] answers;
+    private char correctAnswers[] = { 'A', 'B', 'B', 'D', 'C', 'A', 'C' };
+    private LinkedList<ApplicantAnswer> applicantAnswers = new LinkedList<ApplicantAnswer>();
 
     private NavigateToForm toMyQuiz;
     private NavigateToForm toResultForm;
-    
+
     public AnalysisForm() {
+        applicantAnswers.add(new ApplicantAnswer(
+                new char[] { 'A', 'B', 'B', 'D', 'C', 'A', 'C' },
+                new ApplicantDetails("",
+                        "",
+                        1,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "")));
+        applicantAnswers.add(new ApplicantAnswer(
+                new char[] { 'A', 'C', 'B', 'A', 'C', 'A', 'C' },
+                new ApplicantDetails("name",
+                        "password",
+                        12,
+                        "Male",
+                        "Malaysian",
+                        "Some class",
+                        "TAYLOR 1234",
+                        "Computer Science")));
+        applicantAnswers.add(new ApplicantAnswer(
+                new char[] { 'A', 'B', 'B', 'D', 'C', 'A', 'C' },
+                new ApplicantDetails("name",
+                        "password",
+                        12,
+                        "Male",
+                        "Malaysian",
+                        "Some class",
+                        "TAYLOR 1234",
+                        "Computer Science")));
 
         // ApplicantName
         Label labName = new Label("Applicant Name: ");
@@ -57,7 +90,7 @@ public class AnalysisForm extends Stage {
         btnBack.setOnAction(e -> {
             toResultForm.navigate();
         });
-        
+
         // MyQuiz
         Button btnExit = new Button();
         btnExit.setLayoutX(150);
@@ -87,13 +120,23 @@ public class AnalysisForm extends Stage {
     public void setToMyQuiz(NavigateToForm toMyQuiz) {
         this.toMyQuiz = toMyQuiz;
     }
-    
+
     public void setToResultForm(NavigateToForm toResultForm) {
         this.toResultForm = toResultForm;
     }
 
-    public void getMax() {
+    public int getMax() {
+        int lowScore = 10000000;
+        for (int i = 0; i < applicantAnswers.size(); i++) {
+            // write some logic to calcualte their score
+            int individualScore = 7;
 
+            if (individualScore < lowScore) {
+                lowScore = individualScore;
+            }
+        }
+
+        return lowScore;
     }
 
     public void getMin() {
