@@ -96,7 +96,7 @@ public class MyQuiz extends Application {
 
         //Title
         Scene myScene = new Scene(p1, 600, 400);
-        mainStage.setTitle("Login Page");
+        mainStage.setTitle("MyQuiz");
         mainStage.setScene(myScene);
         mainStage.show();
     }
