@@ -8,15 +8,18 @@ public class Question {
     private String quesImage;
     private Answer[] choices;
     private char correctAns;
+    private int type;
 
     public Question(String question,
             String quesImage,
             Answer[] choices,
-            char correctAns) {
+            char correctAns,
+            int type) {
         this.question = question;
         this.quesImage = quesImage;
         this.choices = choices;
         this.correctAns = correctAns;
+        this.type = type;
     }
 
     public String getQuestion() {
@@ -30,6 +33,10 @@ public class Question {
 
     public Answer[] getChoices() {
         return choices;
+    }
+    
+    public int getType() {
+        return type;
     }
 
     public boolean isCorrectAns(char choice) {

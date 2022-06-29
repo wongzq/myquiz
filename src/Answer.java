@@ -17,7 +17,7 @@ public class Answer {
     }
 
     public Image getAnsImage() {
-        File file = new File(this.ansImage);
+        File file = new File("data/pictures/" + this.ansImage);
         return new Image(file.toURI().toString());
     }
 }

@@ -68,7 +68,7 @@ public class FileReadWrite {
             fileScanner = new Scanner(questionsTxt);
             String numOfLines = fileScanner.nextLine();
             totQues = Integer.parseInt(numOfLines);
-            
+
             for (int k = 1; k <= totQues; k++) {
                 String first = fileScanner.nextLine();
                 lineScanner = new Scanner(first);
@@ -86,34 +86,34 @@ public class FileReadWrite {
                         a1[2] = new Answer(lineScanner.next(), "");
                         a1[3] = new Answer(lineScanner.next(), "");
 
-                        Question q1 = new Question(question1, "", a1, answer);
+                        Question q1 = new Question(question1, "", a1, answer, 1);
                         ques.add(q1);
                         break;
-                        
+
                     case 2:
                         String question2 = lineScanner.next();
                         String q2image = lineScanner.next();
-                        
+
                         Answer[] a2 = new Answer[4];
                         a2[0] = new Answer(lineScanner.next(), "");
                         a2[1] = new Answer(lineScanner.next(), "");
                         a2[2] = new Answer(lineScanner.next(), "");
                         a2[3] = new Answer(lineScanner.next(), "");
 
-                        Question q2 = new Question(question2, q2image, a2, answer);
+                        Question q2 = new Question(question2, q2image, a2, answer, 2);
                         ques.add(q2);
                         break;
-                        
+
                     case 3:
                         String question3 = lineScanner.next();
-                                               
+
                         Answer[] a3 = new Answer[4];
                         a3[0] = new Answer("", lineScanner.next());
                         a3[1] = new Answer("", lineScanner.next());
                         a3[2] = new Answer("", lineScanner.next());
                         a3[3] = new Answer("", lineScanner.next());
 
-                        Question q3 = new Question(question3, "", a3, answer);
+                        Question q3 = new Question(question3, "", a3, answer, 3);
                         ques.add(q3);
                         break;
                 }
@@ -123,7 +123,7 @@ public class FileReadWrite {
         } catch (FileNotFoundException e) {
             System.out.println("File to read " + questionsTxt + " not found!");
         }
-        
+
         return ques;
     }
 

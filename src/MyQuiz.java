@@ -130,17 +130,17 @@ public class MyQuiz extends Application {
 
     public static void main(String args[]) {
         Application.launch(args);
-        LinkedList<Question> a = FileReadWrite.readQuesTxt();
-        
-        for (int b = 0 ; b < a.size() ; b++){
-            System.out.println(b);
-            System.out.println(a.get(b).getQuestion());
-            System.out.println(a.get(b).getQuesImage());
-            
-            for(int z = 0; z < a.get(b).getChoices().length; z++){
-                System.out.println(a.get(b).getChoices()[z].getAnswer());
-                System.out.println(a.get(b).getChoices()[z].getAnsImage());
-            }
-        }
+//        LinkedList<Question> a = FileReadWrite.readQuesTxt();
+//        
+//        for (int b = 0 ; b < a.size() ; b++){
+//            System.out.println(b);
+//            System.out.println(a.get(b).getQuestion());
+//            System.out.println(a.get(b).getQuesImage());
+//            
+//            for(int z = 0; z < a.get(b).getChoices().length; z++){
+//                System.out.println(a.get(b).getChoices()[z].getAnswer());
+//                System.out.println(a.get(b).getChoices()[z].getAnsImage());
+//            }
+//        }
     }
 }
