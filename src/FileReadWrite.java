@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 
 public class FileReadWrite {
 
-    private static File myf = new File("./data", "applicants.txt");
+    private static File applicantTxt = new File("./data", "applicants.txt");
+    private static File questionsTxt = new File("./data", "questions.txt");
 
     public static ApplicantAnswer[] readExamAnsTxt() {
 
@@ -31,12 +32,11 @@ public class FileReadWrite {
         int totApplicants;
 
         try {
-            fileScanner = new Scanner(myf);
+            fileScanner = new Scanner(applicantTxt);
             String numOfLines = fileScanner.nextLine();
             totApplicants = Integer.parseInt(numOfLines);
             for (int k = 0; k < totApplicants; k++) {
                 String first = fileScanner.nextLine();
-                System.out.println(first);
                 lineScanner = new Scanner(first);
                 lineScanner.useDelimiter(":");
                 username = lineScanner.next();
@@ -46,7 +46,7 @@ public class FileReadWrite {
             }
 
         } catch (FileNotFoundException e) {
-                System.out.println("File to read " + myf + " not found!");
+            System.out.println("File to read " + applicantTxt + " not found!");
         }
 
         return app;
@@ -61,54 +61,70 @@ public class FileReadWrite {
 
         LinkedList<Question> ques = new LinkedList<Question>();
         Scanner fileScanner, lineScanner;
-        int type;
-        char answer;
-        String theQues;
-        String choices[] = new String[3];
-        String quesPic;
+
         int totQues;
 
-//            try {
-//            fileScanner = new Scanner(myf);
-//            String numOfLines = fileScanner.nextLine();
-//            totApplicants = Integer.parseInt(numOfLines);
-//            for (int k = 0; k < totApplicants; k++) {
-//                String first = fileScanner.nextLine();
-//                System.out.println(first);
-//                lineScanner = new Scanner(first);
-//                lineScanner.useDelimiter(":");
-//                username = lineScanner.next();
-//                password = lineScanner.next();
-//                Applicant ap1 = new Applicant(username, password);
-//                app.add(ap1);
-//            }
+        try {
+            fileScanner = new Scanner(questionsTxt);
+            String numOfLines = fileScanner.nextLine();
+            totQues = Integer.parseInt(numOfLines);
+            
+            for (int k = 1; k <= totQues; k++) {
+                String first = fileScanner.nextLine();
+                lineScanner = new Scanner(first);
+                lineScanner.useDelimiter(":");
 
-            try {
-                fileScanner = new Scanner(myf);
-                String numOfLines = fileScanner.nextLine();
-                totQues = Integer.parseInt(numOfLines);
-                for (int k = 1; k <= totQues; k++) {
-                    String first = sfile.nextLine();
-                    sline = new Scanner(aLine);
-                    sline.useDelimiter(":");
-                    type = Integer.parseInt(sline.next());
-                    answer = sline.next().charAt(0);
-                    theQues = sline.next();
-                    quesPic = "";
-                    if (type == 2) {
-                        quesPic = sline.next();
-                    }
-                    choices[0] = sline.next();
-                    choices[1] = sline.next();
-                    choices[2] = sline.next();
-                    sline.close();
-                    ques = new Question(type, answer, theQues, choices, quesPic);
-                    quesList.add(ques);
+                int type = Integer.parseInt(lineScanner.next());
+                char answer = lineScanner.next().charAt(0);
+                switch (type) {
+                    case 1:
+                        String question1 = lineScanner.next();
+
+                        Answer[] a1 = new Answer[4];
+                        a1[0] = new Answer(lineScanner.next(), "");
+                        a1[1] = new Answer(lineScanner.next(), "");
+                        a1[2] = new Answer(lineScanner.next(), "");
+                        a1[3] = new Answer(lineScanner.next(), "");
+
+                        Question q1 = new Question(question1, "", a1, answer);
+                        ques.add(q1);
+                        break;
+                        
+                    case 2:
+                        String question2 = lineScanner.next();
+                        String q2image = lineScanner.next();
+                        
+                        Answer[] a2 = new Answer[4];
+                        a2[0] = new Answer(lineScanner.next(), "");
+                        a2[1] = new Answer(lineScanner.next(), "");
+                        a2[2] = new Answer(lineScanner.next(), "");
+                        a2[3] = new Answer(lineScanner.next(), "");
+
+                        Question q2 = new Question(question2, q2image, a2, answer);
+                        ques.add(q2);
+                        break;
+                        
+                    case 3:
+                        String question3 = lineScanner.next();
+                                               
+                        Answer[] a3 = new Answer[4];
+                        a3[0] = new Answer("", lineScanner.next());
+                        a3[1] = new Answer("", lineScanner.next());
+                        a3[2] = new Answer("", lineScanner.next());
+                        a3[3] = new Answer("", lineScanner.next());
+
+                        Question q3 = new Question(question3, "", a3, answer);
+                        ques.add(q3);
+                        break;
                 }
-                sfile.close();
-            } catch (FileNotFoundException e) {
-                System.out.println("File to read " + myf + " not found!");
-            }
-        }
 
+            }
+            fileScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File to read " + questionsTxt + " not found!");
+        }
+        
+        return ques;
     }
+
+}
