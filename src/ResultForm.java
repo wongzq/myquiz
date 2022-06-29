@@ -1,6 +1,9 @@
 
+import java.util.LinkedList;
+import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -8,6 +11,9 @@ import javafx.stage.Stage;
 
 public class ResultForm extends Stage {
 
+    private LinkedList<Applicant> applicants;
+    private ComboBox<Applicant> cmbname;
+    
     private ApplicantAnswer[] answers;
 
     private NavigateToForm toMyQuiz;
@@ -16,13 +22,17 @@ public class ResultForm extends Stage {
     public ResultForm() {
 
         // ApplicantName
+        applicants = FileReadWrite.readAppTxt();
+
+        cmbname = new ComboBox<Applicant>(FXCollections.observableArrayList(applicants));
         Label labName = new Label("Applicant: ");
         labName.setLayoutX(25); // without offset
         labName.setLayoutY(50); // without offset
 
-        TextField txtName = new TextField();
-        txtName.setLayoutX(150);
-        txtName.setLayoutY(50);
+        cmbname.setLayoutX(150);
+        cmbname.setLayoutY(50);
+        cmbname.setMinWidth(150);
+        cmbname.setMaxWidth(150);
 
         // Result
         Label labResult = new Label("Result: ");
@@ -38,6 +48,7 @@ public class ResultForm extends Stage {
         btnPass.setLayoutX(450);
         btnPass.setLayoutY(25);
         btnPass.setText("Pass");
+        
         //Fail
         Button btnFail = new Button();
         btnFail.setLayoutX(500);
@@ -50,7 +61,7 @@ public class ResultForm extends Stage {
         labAnswer.setLayoutY(200); // without offset
 
         //AllAnswer
-        Label labAllAnswer = new Label("EXAMPLE ANSWERS!!!!");
+        Label labAllAnswer = new Label("B, C, B, D, A, B, A, C, A, C, D, A, B, D, A, C, C, B, D, A");
         labAllAnswer.setLayoutX(100); // without offset
         labAllAnswer.setLayoutY(200); // without offset
 
@@ -75,7 +86,7 @@ public class ResultForm extends Stage {
 
         Pane p1 = new Pane();
         p1.getChildren().add(labName);
-        p1.getChildren().add(txtName);
+        p1.getChildren().add(cmbname);
         p1.getChildren().add(labResult);
         p1.getChildren().add(txtResult);
         p1.getChildren().add(btnPass);
