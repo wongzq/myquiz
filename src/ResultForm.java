@@ -1,4 +1,3 @@
-
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -78,7 +77,7 @@ public class ResultForm extends Stage {
         Button btnBack = new Button();
         btnBack.setLayoutX(150);
         btnBack.setLayoutY(300);
-        btnBack.setText("Back to Login Page");
+        btnBack.setText("Back to MyQuiz");
         btnBack.setOnAction(e -> {
             toMyQuiz.navigate();
         });

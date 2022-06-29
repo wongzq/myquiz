@@ -73,7 +73,7 @@ public class LoginForm extends Stage {
         Button btnBack = new Button();
         btnBack.setLayoutX(25);
         btnBack.setLayoutY(200);
-        btnBack.setText("Back to Login Page");
+        btnBack.setText("Back to MyQuiz");
         btnBack.setOnAction(e -> {
             toMyQuiz.navigate();
         });

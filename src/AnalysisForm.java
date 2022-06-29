@@ -1,18 +1,12 @@
 import java.util.LinkedList;
-import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import java.util.Arrays;
 
 public class AnalysisForm extends Stage {
-
-    
-    private LinkedList<Applicant> applicants;
-    private ComboBox<Applicant> cmbname;
     
     
     private char correctAnswers[] = {'B', 'D', 'A', 'B', 'C', 'B', 'A', 'C', 'A',
@@ -25,6 +19,7 @@ public class AnalysisForm extends Stage {
     private Label labMax = new Label("Max: ");
     private Label labMin = new Label("Min: ");
     private Label labAvg = new Label("Average: ");
+    private Label labMed = new Label("Median: ");
 
     public AnalysisForm() {
         applicantAnswers.add(new ApplicantAnswer(
@@ -63,40 +58,28 @@ public class AnalysisForm extends Stage {
                         "123",
                         "Computer Science")));
 
-        // ApplicantName
-        applicants = FileReadWrite.readAppTxt();
-
-        cmbname = new ComboBox<Applicant>(FXCollections.observableArrayList(applicants));
-        Label labName = new Label("Applicant Name: ");
-        labName.setLayoutX(25); // without offset
-        labName.setLayoutY(50); // without offset
-        
-        cmbname.setLayoutX(150);
-        cmbname.setLayoutY(50);
-        cmbname.setMinWidth(150);
-        cmbname.setMaxWidth(150);
 
         // Max
         labMax.setLayoutX(25); // without offset
-        labMax.setLayoutY(100); // without offset
+        labMax.setLayoutY(50); // without offset
 
         // Min
         labMin.setLayoutX(25); // without offset
-        labMin.setLayoutY(150); // without offset
+        labMin.setLayoutY(100); // without offset
 
         //Average
         labAvg.setLayoutX(25); // without offset
-        labAvg.setLayoutY(200); // without offset
-
+        labAvg.setLayoutY(150); // without offset
 
         // Mode
-        Label labMode = new Label("Mode: ");
-        labMode.setLayoutX(25); // without offset
-        labMode.setLayoutY(250); // without offset
-
-        TextField txtMode = new TextField();
-        txtMode.setLayoutX(150);
-        txtMode.setLayoutY(250);
+//        Label labMode = new Label("Mode: ");
+//        labMode.setLayoutX(25); // without offset
+//        labMode.setLayoutY(200); // without offset
+        
+        //Median
+        labMed.setLayoutX(25); // without offset
+        labMed.setLayoutY(200); // without offset
+        
 
         // Back
         Button btnBack = new Button();
@@ -111,21 +94,19 @@ public class AnalysisForm extends Stage {
         Button btnExit = new Button();
         btnExit.setLayoutX(150);
         btnExit.setLayoutY(300);
-        btnExit.setText("Back to Login Page");
+        btnExit.setText("Back to MyQuiz");
         btnExit.setOnAction(e -> {
             toMyQuiz.navigate();
         });
 
         Pane p1 = new Pane();
-        p1.getChildren().add(labName);
         p1.getChildren().add(labMax);
         p1.getChildren().add(labMin);
-        p1.getChildren().add(labMode);
+        p1.getChildren().add(labMed);
+//        p1.getChildren().add(labMode);
         p1.getChildren().add(labAvg);
         p1.getChildren().add(btnBack);
         p1.getChildren().add(btnExit);
-        p1.getChildren().add(cmbname);
-        p1.getChildren().add(txtMode);
 
         Scene myScene = new Scene(p1, 600, 400);
         this.setTitle("Analysis Form");
@@ -147,11 +128,17 @@ public class AnalysisForm extends Stage {
         int min = getMin();
         labMin.setText("Min: " + min + "/20");
 
-        int avg = getAvg();
+        double avg = getAvg();
         labAvg.setText("Average: " + avg + "/20");
 
+        int med = getMedian();
+        labMed.setText("Median: " + med + "/20");
+        
     }
 
+// j = calculated score
+// i = students
+    
     public int getMax() {
         int maxScore = 0;
         for (int i = 0; i < applicantAnswers.size(); i++) {
@@ -192,29 +179,45 @@ public class AnalysisForm extends Stage {
         return minScore;
     }
 
-    public int getAvg() {
-        int avgScore = 0;
-        int maxScore = 0;
+    public double getAvg() {
+        int cumulativeScore = 0;
         for (int i = 0; i < applicantAnswers.size(); i++) {
             // write some logic to calcualte their score
             int individualScore = 0;
             char ans[] = applicantAnswers.get(i).getAnswers();
             for (int j = 0; j < correctAnswers.length; j++) {
                 if (ans[j] == correctAnswers[j]) {
-                    individualScore++;
+                    individualScore ++;
                 }
             }
-
-            if (individualScore > maxScore) {
-                maxScore = individualScore;
-                avgScore = maxScore / 2;
-            }
+            cumulativeScore += individualScore;
         }
-
+        
+        double avgScore = cumulativeScore/applicantAnswers.size();
         return avgScore;
     }
 
-    public void getMode() {
-        
+    public int getMedian(){
+        int scoresFinal[] = new int[applicantAnswers.size()];
+        for (int i = 0; i < applicantAnswers.size(); i++) {
+            // write some logic to calcualte their score
+            int individualScore = 0;
+            char ans[] = applicantAnswers.get(i).getAnswers();
+            for (int j = 0; j < correctAnswers.length; j++) {
+                if (ans[j] == correctAnswers[j]) {
+                    individualScore ++;
+                }
+            }
+            scoresFinal[i] = individualScore;
+        }
+        Arrays.sort(scoresFinal);
+        int middleIndex = applicantAnswers.size()/2;
+        return scoresFinal[middleIndex];
     }
+    
+//    public void getMode() {
+//        
+//    }
+    
+    
 }
