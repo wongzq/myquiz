@@ -62,6 +62,7 @@ public class MyQuiz extends Application {
             public void navigate() {
                 resultForm.hide();
                 analysisForm.show();
+                analysisForm.reloadPage();
             };
         };
         resultForm.setToAnalysisForm(toAnalysisForm);

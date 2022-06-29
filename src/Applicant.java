@@ -16,5 +16,7 @@ public class Applicant {
         return this.password == password;
     }      
     
-    
+    public String toString() {
+        return this.name;
+    }
 }
