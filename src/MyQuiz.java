@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,21 +25,38 @@ public class MyQuiz extends Application {
                 stage.show();
                 resultForm.hide();
                 analysisForm.hide();
-//                applicantForm.hide();
-//                examForm.hide();
+                loginForm.hide();
+                applicantForm.hide();
+                examForm.hide();
             };
         };
+        loginForm.setToMyQuiz(toMyQuiz);
         resultForm.setToMyQuiz(toMyQuiz);
         analysisForm.setToMyQuiz(toMyQuiz);
-//        loginForm.setToMyQuiz(toMyQuiz);
-//        applicantForm.setToMyQuiz(toMyQuiz);
-//        examForm.setToMyQuiz(toMyQuiz);
+        applicantForm.setToMyQuiz(toMyQuiz);
+        examForm.setToMyQuiz(toMyQuiz);
         
         //leave this for reference (only works when interface has one method)
 //        resultForm.setToMyQuiz(() -> {
 //            stage.show();
 //            resultForm.hide();
 //        });
+        NavigateToForm toLoginForm = new NavigateToForm() {
+        	public void navigate() {
+        		applicantForm.hide();
+        		loginForm.show();
+        	}
+        };
+        applicantForm.setToLoginForm(toLoginForm);
+        
+        NavigateToForm toApplicantForm = new NavigateToForm() {
+        	public void navigate() {
+        		loginForm.hide();
+        		applicantForm.show();
+        	};
+        };
+        
+        loginForm.setToApplicantForm(toApplicantForm);
 
         NavigateToForm toAnalysisForm = new NavigateToForm() {
             public void navigate() {
@@ -55,7 +73,16 @@ public class MyQuiz extends Application {
             };
         };
         analysisForm.setToResultForm(toResultForm);
+        
+        NavigateToForm toExamForm = new NavigateToForm() {
+    		public void navigate() {
+    			applicantForm.hide();
+    			examForm.show();
+    		}
+    	};
+    	applicantForm.setToExamForm(toExamForm);
     }
+
 
     
     @Override
@@ -103,5 +130,17 @@ public class MyQuiz extends Application {
 
     public static void main(String args[]) {
         Application.launch(args);
+        LinkedList<Question> a = FileReadWrite.readQuesTxt();
+        
+        for (int b = 0 ; b < a.size() ; b++){
+            System.out.println(b);
+            System.out.println(a.get(b).getQuestion());
+            System.out.println(a.get(b).getQuesImage());
+            
+            for(int z = 0; z < a.get(b).getChoices().length; z++){
+                System.out.println(a.get(b).getChoices()[z].getAnswer());
+                System.out.println(a.get(b).getChoices()[z].getAnsImage());
+            }
+        }
     }
 }

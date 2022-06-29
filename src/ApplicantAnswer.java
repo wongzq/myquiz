@@ -1,21 +1,17 @@
 public class ApplicantAnswer {
-    private char[] answers;
+    private char answers[];
     private ApplicantDetails applicant;
-    
-    
-    public ApplicantAnswer(char[] answer, ApplicantDetails applicant ) {
-    this.answers = answers;
-    this.applicant = applicant;
-         
 
+    public ApplicantAnswer(char answers[], ApplicantDetails applicant) {
+        this.answers = answers;
+        this.applicant = applicant;
     }
-    
-    
-    public char[] getAnswers(){
+
+    public char[] getAnswers() {
         return answers;
     }
-    
-    public ApplicantDetails getApplicant(){
+
+    public ApplicantDetails getApplicant() {
         return applicant;
     }
 
