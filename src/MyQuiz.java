@@ -79,6 +79,7 @@ public class MyQuiz extends Application {
     		public void navigate() {
     			applicantForm.hide();
     			examForm.show();
+                        examForm.startTimer();
     		}
     	};
     	applicantForm.setToExamForm(toExamForm);
@@ -127,6 +128,8 @@ public class MyQuiz extends Application {
         mainStage.setTitle("MyQuiz");
         mainStage.setScene(myScene);
         mainStage.show();
+        
+        
     }
 
     public static void main(String args[]) {

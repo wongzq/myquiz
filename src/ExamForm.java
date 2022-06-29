@@ -1,5 +1,8 @@
 
 import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,11 +28,31 @@ public class ExamForm extends Stage {
     private RadioButton radChoice1, radChoice2, radChoice3, radChoice4;
     private ToggleGroup grpChoices;
     private NavigateToForm toMyQuiz;
+    private Timer timer;
+    private Label lblTimer;
 
     public ExamForm() {
         this.setTitle("Exam Form");
         appAns = new char[20];
         reloadQues();
+    }
+
+    public void startTimer() {
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            int countdown = 10;
+
+            public void run() {
+                if (countdown > 0) {
+                    Platform.runLater(() -> lblTimer.setText("Time to read the question: "+countdown));
+                    countdown--;
+                    System.out.println(countdown);
+                } else {
+                    timer.cancel();
+                }
+            }
+
+        }, 0, 1000);
     }
 
     private void reloadQues() {
@@ -88,13 +111,11 @@ public class ExamForm extends Stage {
         imgAns4.setImage(questions.get(currQuestion).getChoices()[3].getAnsImage());
         imgAns4.setFitHeight(200);
         imgAns4.setFitWidth(225);
-        
+
         //label Question No
-        labQuesNo = new Label(Integer.toString(currQuestion) + 1);
+        labQuesNo = new Label(Integer.toString(currQuestion + 1));
         labQuesNo.setLayoutX(45);
         labQuesNo.setLayoutY(50);
-        labQuesNo.setStyle("-fx-font-family:serif;-fx-text-fill:#0000ff;");
-        
 
         //label A,B,C,D
         labA = new Label();
@@ -104,8 +125,10 @@ public class ExamForm extends Stage {
         radChoice1.setLayoutX(50);
         radChoice1.setLayoutY(300);
         radChoice1.setOnAction(e -> {
-            //appAns[0]
+            appAns[currQuestion] = 'A';
         });
+        radChoice1.setSelected(appAns[currQuestion] == 'A');
+        System.out.println(appAns);
 
         labB = new Label();
         labB.setLayoutX(300);
@@ -113,28 +136,40 @@ public class ExamForm extends Stage {
         radChoice2 = new RadioButton("");
         radChoice2.setLayoutX(300);
         radChoice2.setLayoutY(300);
-        
+        radChoice2.setOnAction(e -> {
+            appAns[currQuestion] = 'B';
+        });
+        radChoice2.setSelected(appAns[currQuestion] == 'B');
+
         labC = new Label();
         labC.setLayoutX(50);
         labC.setLayoutY(575);
         radChoice3 = new RadioButton("");
         radChoice3.setLayoutX(50);
         radChoice3.setLayoutY(575);
-        
+        radChoice3.setOnAction(e -> {
+            appAns[currQuestion] = 'C';
+        });
+        radChoice3.setSelected(appAns[currQuestion] == 'C');
+
         labD = new Label();
         labD.setLayoutX(300);
         labD.setLayoutY(575);
         radChoice4 = new RadioButton("");
         radChoice4.setLayoutX(300);
         radChoice4.setLayoutY(575);
-        
+        radChoice4.setOnAction(e -> {
+            appAns[currQuestion] = 'D';
+        });
+        radChoice4.setSelected(appAns[currQuestion] == 'D');
+
         grpChoices = new ToggleGroup();
 
         radChoice1.setToggleGroup(grpChoices);
         radChoice2.setToggleGroup(grpChoices);
         radChoice3.setToggleGroup(grpChoices);
         radChoice4.setToggleGroup(grpChoices);
-        
+
         // next, previous, back to main menu button
         btnNext = new Button();
         btnNext.setLayoutX(600);
@@ -167,7 +202,12 @@ public class ExamForm extends Stage {
         btnMainMenu.setOnAction(e -> {
             toMyQuiz.navigate();
         });
-
+        
+        //timer
+        lblTimer = new Label();
+        lblTimer.setLayoutX(700);
+        lblTimer.setLayoutY(50);
+        
         Pane p2 = new Pane();
         p2.getChildren().add(lblQuestion);
         p2.getChildren().add(btnMainMenu);
@@ -191,6 +231,7 @@ public class ExamForm extends Stage {
         p2.getChildren().add(labD);
         p2.getChildren().add(radChoice4);
         p2.getChildren().add(labQuesNo);
+        p2.getChildren().add(lblTimer);
 
         Scene myScene = new Scene(p2, 900, 1000);
         this.setTitle("Exam Form");
