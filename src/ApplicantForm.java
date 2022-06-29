@@ -1,24 +1,26 @@
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class ApplicantForm {
-    private ExamForm examForm;
+public class ApplicantForm extends Stage{
 
-    private Label labResult;
+	private Label labResult;
     private TextField txtName, txtClass, txtIDNo, txtCourse, txtNationality;
-    private Button btnExamForm;
+    private Button btnExamForm, btnGoBack, btnGotoMainMenu;
     private Pane p1;
-    private Scene mainScene;
+    private Scene ApplicantScene;
+    
+    private NavigateToForm toExamForm;
+    private NavigateToForm toLoginForm;
+    private NavigateToForm toMyQuiz;
+
+   // public ApplicantForm() {
+
+    //}
 
     public ApplicantForm() {
-
-    }
-
-    public void start(Stage mainStage) {
-        mainStage.setTitle("APPLICANT FORM");
+        this.setTitle("APPLICANT FORM");
 
         Label labName = new Label("Name: ");
         labName.setLayoutX(50);
@@ -58,6 +60,25 @@ public class ApplicantForm {
         btnExamForm = new Button("EXAM FORM");
         btnExamForm.setLayoutX(700);
         btnExamForm.setLayoutY(800);
+        btnExamForm.setOnAction( e -> {
+        	toExamForm.navigate();
+        }); 
+        
+        btnGoBack = new Button();
+        btnGoBack.setText("Go Back");
+        btnGoBack.setLayoutX(580);
+        btnGoBack.setLayoutY(800);
+        btnGoBack.setOnAction( e ->{
+        	toLoginForm.navigate();
+        });
+        
+        btnGotoMainMenu = new Button();
+        btnGotoMainMenu.setText("Go Back To Main Menu");
+        btnGotoMainMenu.setLayoutX(380);
+        btnGotoMainMenu.setLayoutY(800);
+        btnGotoMainMenu.setOnAction( e ->{
+        	toMyQuiz.navigate();
+        });
 
         Label labResultLabel = new Label("A P P L I C A N T  F O R M ");
         labResultLabel.setLayoutX(50);
@@ -80,17 +101,25 @@ public class ApplicantForm {
         p1.getChildren().add(labResultLabel);
         p1.getChildren().add(labResult);
         p1.getChildren().add(btnExamForm);
-        mainScene = new Scene(p1, 900, 1050);
-        mainStage.setScene(mainScene);
-        mainStage.show();
+        p1.getChildren().add(btnGoBack);
+        p1.getChildren().add(btnGotoMainMenu);
+        ApplicantScene = new Scene(p1, 900, 1050);
+        this.setScene(ApplicantScene);
     }
 
-    public static void main(String args[]) {
-        Application.launch(args);
+    public void setToExamForm(NavigateToForm toExamForm) {
+    	this.toExamForm = toExamForm;
     }
-
-    private void saveDetails() {
-
+    
+    public void setToLoginForm(NavigateToForm toLoginForm) {
+    	this.toLoginForm = toLoginForm;
     }
+    
+    public void setToMyQuiz(NavigateToForm toMyQuiz) {
+    	this.toMyQuiz = toMyQuiz;
+    }
+    //private void saveDetails() {
+
+   // }
 
 }
