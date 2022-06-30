@@ -163,11 +163,11 @@ public class AnalysisForm extends Stage {
         int minScore = 20;
         for (int i = 0; i < applicantAnswers.size(); i++) {
             // write some logic to calcualte their score
-            int individualScore = 20;
+            int individualScore = 0;
             char ans[] = applicantAnswers.get(i).getAnswers();
             for (int j = 0; j < correctAnswers.length; j++) {
                 if (ans[j] == correctAnswers[j]) {
-                    individualScore--;
+                    individualScore++;
                 }
             }
 
