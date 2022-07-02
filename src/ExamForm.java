@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -27,6 +26,7 @@ public class ExamForm extends Stage {
     private Label labA, labB, labC, labD;
     private Label labQuesNo;
     private Label labName, labNationality;
+    private Label labBorder;
     private ImageView imgQuestion, imgAns1, imgAns2, imgAns3, imgAns4;
     private Button btnNext, btnPrev;
     private Button btnSubmit;
@@ -49,14 +49,25 @@ public class ExamForm extends Stage {
         timer.scheduleAtFixedRate(new TimerTask() {
             int countdown = 600;
 
+            @Override
             public void run() {
                 if (countdown > 0) {
                     countdown--;
 
+                    String minutes = Integer.toString(countdown / 60);
+                    String seconds = Integer.toString(countdown % 60);
+
+                    String minutesStr = minutes.length() == 1 ? "0" + minutes : minutes;
+                    String secondsStr = seconds.length() == 1 ? "0" + seconds : seconds;
+
+                    String timeLeft = minutesStr + ":" + secondsStr;
+
+                    Platform.runLater(() -> lblTimer.setText("Time to read the question: " + timeLeft));
+
                     if (countdown <= 180) {
-                        Platform.runLater(() -> lblTimer.setText("Time to read the question: " + countdown));
+                        Platform.runLater(() -> lblTimer.setStyle("-fx-font-family:Arial;-fx-font-size: 18px;-fx-text-fill: #ff0000;"));
                     } else {
-                        Platform.runLater(() -> lblTimer.setText(""));
+                        Platform.runLater(() -> lblTimer.setStyle("-fx-font-family:Arial;-fx-font-size: 18px;-fx-text-fill: #000000;"));
                     }
                     if (countdown == 10) {
                         String musicFile = "./data/Countdown.mp3";
@@ -75,18 +86,25 @@ public class ExamForm extends Stage {
             }
         }, 0, 1000);
     }
-    
-    
 
     public void reloadQues() {
         //display name
         labName = new Label();
         labNationality = new Label();
+
+        //labBorder
+        labBorder = new Label();
+        labBorder.setStyle("-fx-pref-width:200px; -fx-pref-height: 125px; -fx-border-width: 3px; -fx-border-color: #000");
+        labBorder.setLayoutX(1175);
+        labBorder.setLayoutY(25);
+        labBorder.setMaxHeight(125);
+
         if (SharedData.getApplicant() != null) {
             labName.setLayoutX(1200);
             labName.setLayoutY(50);
             labName.setText("Name: " + SharedData.getApplicant().getName());
-            labName.setStyle("-fx-font-family:Arial;-fx-font-size: 16px");
+            labName.setStyle("-fx-font-family:Arial;-fx-font-size: 16px;");
+
             //display nationality
             labNationality.setLayoutX(1200);
             labNationality.setLayoutY(100);
@@ -268,9 +286,9 @@ public class ExamForm extends Stage {
         lblTimer = new Label();
         lblTimer.setLayoutX(600);
         lblTimer.setLayoutY(200);
-        lblTimer.setStyle("-fx-font-family:Arial;-fx-font-size: 18px");
 
         p2 = new Pane();
+        p2.getChildren().add(labBorder);
         p2.getChildren().add(labName);
         p2.getChildren().add(labNationality);
         p2.getChildren().add(lblQuestion);

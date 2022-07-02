@@ -16,6 +16,10 @@ public class FileReadWrite {
     private static File questionsTxt = new File("./data", "questions.txt");
     private static File examAnsTxt = new File("./data", "exam_answers.txt");
 
+    private static final int REC_SIZE = 84;
+    private static final int NAME_SIZE = 20;
+    private static final int PASSWORD_SIZE = 20;
+
     public static LinkedList<ApplicantAnswer> readExamAnsTxt() {
 
         LinkedList<ApplicantAnswer> app = new LinkedList<>();
@@ -107,6 +111,29 @@ public class FileReadWrite {
         }
 
         return app;
+    }
+
+    public static LinkedList<Applicant> readAppDat() throws IOException {
+        LinkedList<Applicant> applicants = new LinkedList<Applicant>();
+
+        RandomAccessFile file = new RandomAccessFile("src/TextFiles/applicants.dat", "rw");
+
+        int stdPos;
+        String stdName;
+        String stdPassword;
+
+        long numRecords = file.length() / REC_SIZE;
+        file.seek(0);
+        for (int i = 0; i < numRecords; i++) {
+            stdPos = file.readInt();
+            stdName = InsertApplicant.readString(file, NAME_SIZE);
+            stdPassword = InsertApplicant.readString(file, PASSWORD_SIZE);
+            System.out.println("POS : " + stdPos + " APPLICANT NAME : " + stdName + " PASSWORD : " + stdPassword);
+            
+            applicants.add(new Applicant(stdName, stdPassword));
+        }
+        
+        return applicants;
     }
 
     public static Question[] readQuesAnsTxt() { //basically how to print out the exam paper 

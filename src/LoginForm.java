@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,16 +21,19 @@ public class LoginForm extends Stage {
     private Label labName, labPassword;
     private Label labError;
 
+
     private NavigateToForm toMyQuiz;
     private NavigateToForm toApplicantForm;
-    
-    
 
     public LoginForm() {
-
-        applicants = FileReadWrite.readAppTxt();
-
-        cmbName = new ComboBox<Applicant>(FXCollections.observableArrayList(applicants));
+        try {
+            applicants = FileReadWrite.readAppDat();
+            cmbName = new ComboBox<Applicant>(FXCollections.observableArrayList(applicants));
+        } catch (IOException e) {
+        }
+        
+        
+        
         // Username
         labName = new Label("Username");
         labName.setStyle("-fx-pref-width: 125px;-fx-font-family:Arial;-fx-font-size: 15px");
@@ -56,7 +60,7 @@ public class LoginForm extends Stage {
         txtPassword.setLayoutX(635);
         txtPassword.setLayoutY(375);
         txtPassword.setMinWidth(200);
-        
+
         labError = new Label("");
         labError.setLayoutX(635); // without offset
         labError.setLayoutY(425); // without offset
@@ -71,7 +75,7 @@ public class LoginForm extends Stage {
             if (login() == true) {
                 toApplicantForm.navigate();
                 labError.setText("");
-            }else {
+            } else {
                 labError.setText("Wrong Password !");
             }
         });

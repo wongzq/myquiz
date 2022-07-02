@@ -1,4 +1,6 @@
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -9,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ResultForm extends Stage {
@@ -18,8 +19,7 @@ public class ResultForm extends Stage {
 
     private LinkedList<Character> correctAns = new LinkedList<>();
     private LinkedList<ApplicantAnswer> applicantAnswers = new LinkedList<ApplicantAnswer>();
-    private LinkedList<Applicant> applicants;
-    private ComboBox<Applicant> cmbName;
+    private ComboBox<ApplicantAnswer> cmbName;
 
     private ApplicantAnswer[] answers;
 
@@ -32,12 +32,11 @@ public class ResultForm extends Stage {
     private TableView table = new TableView();
 
     public ResultForm() {
-
         // ApplicantName
-        applicants = FileReadWrite.readAppTxt();
         applicantAnswers = FileReadWrite.readExamAnsTxt();
+        Collections.sort(applicantAnswers);
+        cmbName = new ComboBox<ApplicantAnswer>(FXCollections.observableArrayList(applicantAnswers));
 
-        cmbName = new ComboBox<Applicant>(FXCollections.observableArrayList(applicants));
         Label labName = new Label("Applicant: ");
         labName.setLayoutX(25); // without offset
         labName.setLayoutY(50); // without offset
@@ -131,10 +130,9 @@ public class ResultForm extends Stage {
     }
 
     public void reloadPage() {
-        applicants = FileReadWrite.readAppTxt();
         applicantAnswers = FileReadWrite.readExamAnsTxt();
-        cmbName = new ComboBox<Applicant>(FXCollections.observableArrayList(applicants));
-
+        Collections.sort(applicantAnswers);
+        cmbName = new ComboBox<ApplicantAnswer>(FXCollections.observableArrayList(applicantAnswers));
     }
 
     private void reloadApplicant() {
@@ -148,11 +146,11 @@ public class ResultForm extends Stage {
             table.getItems().clear();
             table.refresh();
         } else {
-            int result = getResult();
-            double finalScore = (result / 20f) * 100f;
-            labResult.setText("Result: " + finalScore + "%");
-            labScore.setText("Score:" + result + "/20");
-            if (finalScore < 70) {
+            int score = this.applicantAnswers.get(i).getScore();
+            double scorePercentage = Math.round(((score / 20f) * 100f) * 100) / 100;
+            labResult.setText("Result: " + scorePercentage + "%");
+            labScore.setText("Score:" + score + "/20");
+            if (scorePercentage < 70) {
                 btnPass.setText("Fail");
                 btnPass.setStyle("-fx-background-color: #ff0000; ");
 
@@ -173,27 +171,14 @@ public class ResultForm extends Stage {
         }
     }
 
-    private int getResult() {
-        int individualScore = 0;
-        int i = getSelectedIndex();
-        char ans[] = applicantAnswers.get(i).getAnswers();
-        for (int j = 0; j < correctAnswers.length; j++) {
-            if (ans[j] == correctAnswers[j]) {
-                individualScore++;
-            }
-        }
-
-        return individualScore;
-    }
-
     private int getSelectedIndex() {
         for (int i = 0; i < applicantAnswers.size(); i++) {
-            Applicant selectedApplicant = cmbName.getValue();
+            ApplicantAnswer selectedApplicant = cmbName.getValue();
             if (selectedApplicant == null) {
                 return -1;
             }
 
-            String selectedName = selectedApplicant.getName();
+            String selectedName = selectedApplicant.getApplicant().getName();
             String applicantName = applicantAnswers.get(i).getApplicant().getName();
             if (selectedName.equals(applicantName)) {
                 return i;

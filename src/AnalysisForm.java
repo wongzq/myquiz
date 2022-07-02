@@ -88,16 +88,16 @@ public class AnalysisForm extends Stage {
         System.out.println(applicantAnswers);
 
         int max = getMax();
-        labMax.setText("Max: " + max + "/20");
+        labMax.setText("Max Score: " + max + "/20");
 
         int min = getMin();
-        labMin.setText("Min: " + min + "/20");
+        labMin.setText("Min Score: " + min + "/20");
 
         double avg = getAvg();
-        labAvg.setText("Average: " + avg + "/20");
+        labAvg.setText("Average Score: " + avg + "/20");
 
         int med = getMedian();
-        labMed.setText("Median: " + med + "/20");
+        labMed.setText("Median Score: " + med + "/20");
 
     }
 
@@ -106,15 +106,7 @@ public class AnalysisForm extends Stage {
     public int getMax() {
         int maxScore = 0;
         for (int i = 0; i < applicantAnswers.size(); i++) {
-            // write some logic to calcualte their score
-            int individualScore = 0;
-            char ans[] = applicantAnswers.get(i).getAnswers();
-            for (int j = 0; j < correctAnswers.length; j++) {
-                if (ans[j] == correctAnswers[j]) {
-                    individualScore++;
-                }
-            }
-
+            int individualScore = applicantAnswers.get(i).getScore();
             if (individualScore > maxScore) {
                 maxScore = individualScore;
             }
@@ -126,14 +118,7 @@ public class AnalysisForm extends Stage {
     public int getMin() {
         int minScore = 20;
         for (int i = 0; i < applicantAnswers.size(); i++) {
-            // write some logic to calcualte their score
-            int individualScore = 0;
-            char ans[] = applicantAnswers.get(i).getAnswers();
-            for (int j = 0; j < correctAnswers.length; j++) {
-                if (ans[j] == correctAnswers[j]) {
-                    individualScore++;
-                }
-            }
+            int individualScore = applicantAnswers.get(i).getScore();
 
             if (individualScore < minScore) {
                 minScore = individualScore;
@@ -146,14 +131,8 @@ public class AnalysisForm extends Stage {
     public double getAvg() {
         int cumulativeScore = 0;
         for (int i = 0; i < applicantAnswers.size(); i++) {
-            // write some logic to calcualte their score
-            int individualScore = 0;
-            char ans[] = applicantAnswers.get(i).getAnswers();
-            for (int j = 0; j < correctAnswers.length; j++) {
-                if (ans[j] == correctAnswers[j]) {
-                    individualScore++;
-                }
-            }
+            int individualScore = applicantAnswers.get(i).getScore();
+
             cumulativeScore += individualScore;
         }
 
@@ -164,14 +143,8 @@ public class AnalysisForm extends Stage {
     public int getMedian() {
         int scoresFinal[] = new int[applicantAnswers.size()];
         for (int i = 0; i < applicantAnswers.size(); i++) {
-            // write some logic to calcualte their score
-            int individualScore = 0;
-            char ans[] = applicantAnswers.get(i).getAnswers();
-            for (int j = 0; j < correctAnswers.length; j++) {
-                if (ans[j] == correctAnswers[j]) {
-                    individualScore++;
-                }
-            }
+            int individualScore = applicantAnswers.get(i).getScore();
+
             scoresFinal[i] = individualScore;
         }
         Arrays.sort(scoresFinal);
