@@ -11,8 +11,7 @@ import javafx.scene.control.ComboBox;
 
 public class AnalysisForm extends Stage {
 
-    private char correctAnswers[] = {'B', 'D', 'A', 'B', 'C', 'B', 'A', 'C', 'A',
-        'C', 'D', 'A', 'B', 'D', 'A', 'C', 'C', 'B', 'D', 'A'};
+    private char correctAnswers[] = FileReadWrite.readCorrectAnswers();
     private LinkedList<ApplicantAnswer> applicantAnswers = new LinkedList<ApplicantAnswer>();
 
     private NavigateToForm toMyQuiz;
@@ -86,6 +85,7 @@ public class AnalysisForm extends Stage {
     public void reloadPage() {
 
         applicantAnswers = FileReadWrite.readExamAnsTxt();
+        System.out.println(applicantAnswers);
 
         int max = getMax();
         labMax.setText("Max: " + max + "/20");

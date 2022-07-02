@@ -21,10 +21,12 @@ public class FileReadWrite {
         LinkedList<ApplicantAnswer> app = new LinkedList<>();
         Scanner fileScanner, lineScanner;
         try {
-            fileScanner = new Scanner(applicantTxt);
-            String first = fileScanner.nextLine();
+            fileScanner = new Scanner(examAnsTxt);
 
-            while (first != null) {
+            while (fileScanner.hasNextLine()) {
+                String first = fileScanner.nextLine();
+                System.out.println(first);
+
                 lineScanner = new Scanner(first);
                 lineScanner.useDelimiter(":");
                 String name = lineScanner.next();
@@ -49,10 +51,8 @@ public class FileReadWrite {
 
         } catch (FileNotFoundException e) {
             System.out.println("File to read " + applicantTxt + " not found!");
-        } catch (NoSuchElementException e) {
-            System.out.println("Empty Line");
-
         }
+
         return app;
 
     }

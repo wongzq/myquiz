@@ -47,13 +47,13 @@ public class ExamForm extends Stage {
     public void startTimer() {
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
-            int countdown = 30;
+            int countdown = 600;
 
             public void run() {
                 if (countdown > 0) {
                     countdown--;
 
-                    if (countdown <= 15) {
+                    if (countdown <= 180) {
                         Platform.runLater(() -> lblTimer.setText("Time to read the question: " + countdown));
                     } else {
                         Platform.runLater(() -> lblTimer.setText(""));

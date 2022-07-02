@@ -14,8 +14,7 @@ import javafx.stage.Stage;
 
 public class ResultForm extends Stage {
 
-    private char correctAnswers[] = {'B', 'D', 'A', 'B', 'C', 'B', 'A', 'C', 'A',
-        'C', 'D', 'A', 'B', 'D', 'A', 'C', 'C', 'B', 'D', 'A'};
+    private char correctAnswers[] = FileReadWrite.readCorrectAnswers();
 
     private LinkedList<Character> correctAns = new LinkedList<>();
     private LinkedList<ApplicantAnswer> applicantAnswers = new LinkedList<ApplicantAnswer>();
@@ -36,6 +35,7 @@ public class ResultForm extends Stage {
 
         // ApplicantName
         applicants = FileReadWrite.readAppTxt();
+        applicantAnswers = FileReadWrite.readExamAnsTxt();
 
         cmbName = new ComboBox<Applicant>(FXCollections.observableArrayList(applicants));
         Label labName = new Label("Applicant: ");
@@ -47,7 +47,7 @@ public class ResultForm extends Stage {
         cmbName.setMinWidth(150);
         cmbName.setMaxWidth(150);
         cmbName.setOnAction(e -> {
-            reloadPage();
+            reloadApplicant();
         });
 
         // Result
@@ -131,17 +131,22 @@ public class ResultForm extends Stage {
     }
 
     public void reloadPage() {
-
         applicants = FileReadWrite.readAppTxt();
+        applicantAnswers = FileReadWrite.readExamAnsTxt();
         cmbName = new ComboBox<Applicant>(FXCollections.observableArrayList(applicants));
 
+    }
+
+    private void reloadApplicant() {
         int i = getSelectedIndex();
+
         if (i == -1) {
             btnPass.setText("-");
             btnPass.setStyle("-fx-background-color: -fx-base");
             labResult.setText("Result :");
             labScore.setText("Score :");
             table.getItems().clear();
+            table.refresh();
         } else {
             int result = getResult();
             double finalScore = (result / 20f) * 100f;
@@ -164,7 +169,7 @@ public class ResultForm extends Stage {
                 String status = appAns == corrAns ? "Correct" : "Wrong";
                 table.getItems().add(new Result(quesNo, appAns, corrAns, status));
             }
-
+            table.refresh();
         }
     }
 

@@ -18,9 +18,12 @@ public class LoginForm extends Stage {
     private Button btnLogin, btnMenu;
     private TextField txtPassword;
     private Label labName, labPassword;
+    private Label labError;
 
     private NavigateToForm toMyQuiz;
     private NavigateToForm toApplicantForm;
+    
+    
 
     public LoginForm() {
 
@@ -53,6 +56,10 @@ public class LoginForm extends Stage {
         txtPassword.setLayoutX(635);
         txtPassword.setLayoutY(375);
         txtPassword.setMinWidth(200);
+        
+        labError = new Label("");
+        labError.setLayoutX(635); // without offset
+        labError.setLayoutY(425); // without offset
 
         // LOGIN
         btnLogin = new Button();
@@ -63,6 +70,9 @@ public class LoginForm extends Stage {
         btnLogin.setOnAction(e -> {
             if (login() == true) {
                 toApplicantForm.navigate();
+                labError.setText("");
+            }else {
+                labError.setText("Wrong Password !");
             }
         });
 
@@ -80,6 +90,7 @@ public class LoginForm extends Stage {
         p1.getChildren().add(labName);
         p1.getChildren().add(labPassword);
         p1.getChildren().add(txtPassword);
+        p1.getChildren().add(labError);
         p1.getChildren().add(btnLogin);
         p1.getChildren().add(btnMenu);
         p1.getChildren().add(cmbName);
