@@ -17,6 +17,7 @@ public class AnalysisForm extends Stage {
     private NavigateToForm toMyQuiz;
     private NavigateToForm toResultForm;
 
+    private Label labAnalysisForm = new Label("Analysis Form ");
     private Label labMax = new Label("Max: ");
     private Label labMin = new Label("Min: ");
     private Label labAvg = new Label("Average: ");
@@ -25,22 +26,31 @@ public class AnalysisForm extends Stage {
     public AnalysisForm() {
 
         applicantAnswers = FileReadWrite.readExamAnsTxt();
-
+        
+        // AnalysisForm Title
+        labAnalysisForm.setLayoutX(25);
+        labAnalysisForm.setLayoutY(30);
+        labAnalysisForm.setStyle("-fx-font-family:Verdana; -fx-font-weight:bold; -fx-font-size: 18px");
+        
         // Max
         labMax.setLayoutX(25); // without offset
-        labMax.setLayoutY(50); // without offset
+        labMax.setLayoutY(65); // without offset
+        labMax.setStyle("-fx-font-size: 12px");
 
         // Min
         labMin.setLayoutX(25); // without offset
-        labMin.setLayoutY(100); // without offset
+        labMin.setLayoutY(115); // without offset
+        labMin.setStyle("-fx-font-size: 12px");
 
         //Average
         labAvg.setLayoutX(25); // without offset
-        labAvg.setLayoutY(150); // without offset
+        labAvg.setLayoutY(165); // without offset
+        labAvg.setStyle("-fx-font-size: 12px");
 
         //Median
         labMed.setLayoutX(25); // without offset
-        labMed.setLayoutY(200); // without offset
+        labMed.setLayoutY(215); // without offset
+        labMed.setStyle("-fx-font-size: 12px");
 
         // Back
         Button btnBack = new Button();
@@ -61,10 +71,10 @@ public class AnalysisForm extends Stage {
         });
 
         Pane p1 = new Pane();
+        p1.getChildren().add(labAnalysisForm);
         p1.getChildren().add(labMax);
         p1.getChildren().add(labMin);
         p1.getChildren().add(labMed);
-//        p1.getChildren().add(labMode);
         p1.getChildren().add(labAvg);
         p1.getChildren().add(btnBack);
         p1.getChildren().add(btnExit);
@@ -152,7 +162,4 @@ public class AnalysisForm extends Stage {
         return scoresFinal[middleIndex];
     }
 
-//    public void getMode() {
-//        
-//    }
 }
