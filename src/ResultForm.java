@@ -138,7 +138,7 @@ public class ResultForm extends Stage {
         int i = getSelectedIndex();
         if (i == -1) {
             btnPass.setText("-");
-            btnPass.setStyle("-fx-base");
+            btnPass.setStyle("-fx-background-color: -fx-base");
             labResult.setText("Result :");
             labScore.setText("Score :");
             table.getItems().clear();
