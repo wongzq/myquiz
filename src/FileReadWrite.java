@@ -7,19 +7,76 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FileReadWrite {
 
     private static File applicantTxt = new File("./data", "applicants.txt");
     private static File questionsTxt = new File("./data", "questions.txt");
+    private static File examAnsTxt = new File("./data", "exam_answers.txt");
 
-    public static ApplicantAnswer[] readExamAnsTxt() {
+    public static LinkedList<ApplicantAnswer> readExamAnsTxt() {
 
-        ApplicantAnswer[] appAns = {};
-        return appAns;
+        LinkedList<ApplicantAnswer> app = new LinkedList<>();
+        Scanner fileScanner, lineScanner;
+        try {
+            fileScanner = new Scanner(applicantTxt);
+            String first = fileScanner.nextLine();
+
+            while (first != null) {
+                lineScanner = new Scanner(first);
+                lineScanner.useDelimiter(":");
+                String name = lineScanner.next();
+                int age = Integer.parseInt(lineScanner.next());
+                String gender = lineScanner.next();
+                String nationality = lineScanner.next();
+                String appClass = lineScanner.next();
+                String appID = lineScanner.next();
+                String course = lineScanner.next();
+
+                ApplicantDetails appDetails = new ApplicantDetails(name, "", age, gender, nationality, appClass, appID, course);
+                char[] answers = new char[20];
+                for (int i = 0; i < 20; i++) {
+                    answers[i] = lineScanner.next().charAt(0);
+                }
+                lineScanner.close();
+
+                ApplicantAnswer appAns = new ApplicantAnswer(answers, appDetails);
+                app.add(appAns);
+            }
+            fileScanner.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File to read " + applicantTxt + " not found!");
+        } catch (NoSuchElementException e) {
+            System.out.println("Empty Line");
+
+        }
+        return app;
+
     }
 
     public static void writeExamAnsTxt(ApplicantAnswer ans) {
+        try {
+            char ansList[] = ans.getAnswers();
+            PrintWriter pw = new PrintWriter(new FileWriter(examAnsTxt, true));
+            pw.print(ans.getApplicant().getName() + ":"
+                    + ans.getApplicant().getAge() + ":"
+                    + ans.getApplicant().getGender() + ":"
+                    + ans.getApplicant().getNationality() + ":"
+                    + ans.getApplicant().getAppClass() + ":"
+                    + ans.getApplicant().getID() + ":"
+                    + ans.getApplicant().getCourse() + ":"
+            );
+            for (int i = 0; i < ansList.length; i++) {
+                pw.print(ansList[i] + ":");
+            }
+            pw.println();
+            pw.close();
+        } catch (IOException e) {
+            System.out.println("MY ERROR : " + e);
+        }
 
     }
 
@@ -52,7 +109,7 @@ public class FileReadWrite {
         return app;
     }
 
-    public static Question[] readQuesAnsTxt() { //basically hwo to print out the exam paper 
+    public static Question[] readQuesAnsTxt() { //basically how to print out the exam paper 
         Question[] quesAns = {};
         return quesAns;
     }
@@ -125,6 +182,15 @@ public class FileReadWrite {
         }
 
         return ques;
+    }
+
+    public static char[] readCorrectAnswers() {
+        char[] correctAns = new char[20];
+        LinkedList<Question> questions = FileReadWrite.readQuesTxt();
+        for (int i = 0; i < questions.size(); i++) {
+            correctAns[i] = questions.get(i).getCorrectAns();
+        }
+        return correctAns;
     }
 
 }

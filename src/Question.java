@@ -22,6 +22,10 @@ public class Question {
         this.type = type;
     }
 
+    public char getCorrectAns() {
+        return correctAns;
+    }
+
     public String getQuestion() {
         return question;
     }
@@ -34,7 +38,7 @@ public class Question {
     public Answer[] getChoices() {
         return choices;
     }
-    
+
     public int getType() {
         return type;
     }

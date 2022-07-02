@@ -36,7 +36,7 @@ public class ApplicantDetails extends Applicant {
         return nationality;
     }
 
-    public String getappClass() {
+    public String getAppClass() {
         return appClass;
     }
 

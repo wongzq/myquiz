@@ -13,7 +13,7 @@ public class Applicant {
     }
     
     public boolean isCorrectPassword(String password){
-        return this.password == password;
+        return this.password.equals(password);
     }      
     
     public String toString() {
